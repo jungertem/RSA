@@ -15,7 +15,11 @@ namespace RSA
             Abonent b = new Abonent(bitLengthPQ: 256 + 128) { Name = "Bob" };
 
             CryptoSystem rsa = new CryptoSystem(a, b);
-            rsa.CheckCondition();
+            rsa.SendKey(a, b, 999);
+
+            Console.WriteLine(a);
+            Console.WriteLine(b);
+
 
             Console.ReadKey();
         }

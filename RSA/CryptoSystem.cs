@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 
 namespace RSA
 {
@@ -13,11 +14,19 @@ namespace RSA
             B = b;
         }
 
-        public void CheckCondition()
+        public void SendKey(Abonent sender, Abonent receiver,BigInteger key)
+        {
+            if (!CheckCondition())
+            {
+                throw new ArgumentException("p*q > p1*q1");
+            }
+            sender.SendKey(receiver, key);
+        }
+        public bool CheckCondition()
         {
             bool condition = A.P * A.Q < B.P * B.Q;
 
-            Console.WriteLine(condition);
+            return condition;
         }
     }
 }

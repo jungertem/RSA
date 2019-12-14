@@ -4,3 +4,9 @@ C:\Users\junge\source\repos\RSA\RSA\bin\Debug\RSA.exe
 C:\Users\junge\source\repos\RSA\RSA\bin\Debug\RSA.pdb
 C:\Users\junge\source\repos\RSA\RSA\obj\Debug\RSA.exe
 C:\Users\junge\source\repos\RSA\RSA\obj\Debug\RSA.pdb
+C:\Users\junge\source\remoteRepositories\RSA\bin\Debug\RSA.exe.config
+C:\Users\junge\source\remoteRepositories\RSA\bin\Debug\RSA.exe
+C:\Users\junge\source\remoteRepositories\RSA\bin\Debug\RSA.pdb
+C:\Users\junge\source\remoteRepositories\RSA\obj\Debug\RSA.csprojAssemblyReference.cache
+C:\Users\junge\source\remoteRepositories\RSA\obj\Debug\RSA.exe
+C:\Users\junge\source\remoteRepositories\RSA\obj\Debug\RSA.pdb

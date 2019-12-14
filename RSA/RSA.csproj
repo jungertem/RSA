@@ -49,8 +49,6 @@
     <Compile Include="CryptoSystem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PublicKey.cs" />
-    <Compile Include="SecretKey.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
