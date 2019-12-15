@@ -33,18 +33,6 @@ namespace RSA
             D = BigIntegerExtensions.ModInverse(Exponent, EulerFunctionResult);
             ReceivedKeyToVerify = null;
         }
-
-        public Tuple<BigInteger, BigInteger, BigInteger> GetSecretKey()
-        {
-            var secretKey = new Tuple<BigInteger, BigInteger, BigInteger>(D, P, Q);
-            return secretKey;
-        }
-        public Tuple<BigInteger, BigInteger> GetPublicKey()
-        {
-            var publicKey = new Tuple<BigInteger, BigInteger>(Exponent, N);
-            return publicKey;
-        }
-
         public BigInteger Encrypt(Tuple<BigInteger,BigInteger> publicKey, BigInteger message)
         {
             var exponent = publicKey.Item2;
