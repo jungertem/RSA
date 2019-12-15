@@ -14,7 +14,7 @@ namespace RSA
             B = b;
         }
 
-        public void SendKey(Abonent sender, Abonent receiver,BigInteger key)
+        public void SendKey(Abonent sender, Abonent receiver, BigInteger key)
         {
             if (!CheckCondition())
             {
@@ -22,7 +22,7 @@ namespace RSA
             }
             sender.SendKey(receiver, key);
         }
-        public bool CheckCondition()
+        private bool CheckCondition()
         {
             bool condition = A.P * A.Q < B.P * B.Q;
 

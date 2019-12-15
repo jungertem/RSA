@@ -45,9 +45,12 @@ namespace RSA
             return publicKey;
         }
 
-        public BigInteger Encrypt(BigInteger message)
+        public BigInteger Encrypt(Tuple<BigInteger,BigInteger> publicKey, BigInteger message)
         {
-            var encrypted = BigInteger.ModPow(message, Exponent, N);
+            var exponent = publicKey.Item2;
+            var modulus = publicKey.Item1;
+
+            var encrypted = BigInteger.ModPow(message, exponent, modulus);
             return encrypted;
         }
         public BigInteger Decrypt(BigInteger cipherText)
