@@ -61,6 +61,16 @@ namespace RSA
 
             return (M == BigInteger.ModPow(S, sender.Exponent, sender.N));
         }
+        public bool Verify(Tuple<BigInteger, BigInteger> publicKey, Tuple<BigInteger, BigInteger> signedMessage)
+        {
+            BigInteger M = signedMessage.Item1;
+            BigInteger S = signedMessage.Item2;
+
+            var exponent = publicKey.Item2;
+            var modulus = publicKey.Item1;
+
+            return (M == BigInteger.ModPow(S, exponent, modulus));
+        }
 
         #region PROTOCOL
         public void SendKey(Abonent receiver, BigInteger key)
@@ -77,7 +87,39 @@ namespace RSA
             receiver.ReceivedKeyToVerify = new Tuple<BigInteger, BigInteger>(k1, s1);
             receiver.ReceiveKey(this);
         }
+        public Tuple<BigInteger,BigInteger> SendKey(Tuple<BigInteger,BigInteger> publicKey, BigInteger key)
+        {
+            var exponent = publicKey.Item2;
+            var modulus = publicKey.Item1;
 
+            if (key > N)
+            {
+                throw new ArgumentOutOfRangeException("Key can't be greater then N");
+            }
+
+            var k1 = BigInteger.ModPow(key, exponent, modulus);
+            var s = BigInteger.ModPow(key, this.D, this.N);
+            var s1 = BigInteger.ModPow(s, exponent, modulus);
+
+            return new Tuple<BigInteger, BigInteger>(k1, s1);
+        }
+        public BigInteger ReceiveKey(Tuple<BigInteger, BigInteger> publicKey, Tuple<BigInteger, BigInteger> signedMessage)
+        {
+
+            var k1 = signedMessage.Item1;
+            var s1 = signedMessage.Item2;
+
+            var k = BigInteger.ModPow(k1, this.D, this.N);
+            var s = BigInteger.ModPow(s1, this.D, this.N);
+
+            if (!Verify(publicKey, new Tuple<BigInteger, BigInteger>(k, s)))
+            {
+                Console.WriteLine("VERIFICATION : " + false);
+            }
+                Console.WriteLine("VERIFICATION : " + true);
+
+            return k;
+        }
         public void ReceiveKey(Abonent sender)
         {
             if (ReceivedKeyToVerify == null)
